@@ -90,7 +90,7 @@ h3 {
     border-radius: 8px;
 }
 
-.btn:hover,
+.btn:hover:not([disabled]),
 #next-btn:hover {
     cursor: pointer;
     box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
@@ -99,6 +99,10 @@ h3 {
     background-color: #56a5eb;
     color: white;
 }
+
+/*.btn:disabled {
+    cursor: no-drop;
+}*/
 
 .btn[disabled]:hover {
     cursor: not-allowed;
@@ -129,4 +133,12 @@ h3 {
     background-color: white;
     border-radius: 8px;
     display: none;
+}
+
+.correct {
+    background-color: blue;
+}
+
+.incorrect {
+    background-color: red;
 }
