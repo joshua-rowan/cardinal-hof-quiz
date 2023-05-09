@@ -10,7 +10,7 @@ const questions=[
      ]  
     },
 {
-     question: "What is the question?",
+     question: "What is the q",
      answers: [
         {text: "This is the answer", correct: false},
         {text: "This is the answer", correct: true},
@@ -115,8 +115,12 @@ function startQuiz(){
 function showQuestion(){
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
-    let questionNum = currentQuestion + 1;
-    questionEl.innerHTML = questionNum + ". " + currentQuestion.question;
+    let questionText = questions[currentQuestionIndex].question;
+    //with Hiram's help I learned that below needed to be currentQuestionIndex, not currentQuestion. 
+    //And that questionText worked best for the question text display
+    //that the "/" before assets in my html js link was messing up the functionality
+    let questionNum = currentQuestionIndex + 1;
+    questionEl.innerHTML = questionNum + ". " + questionText;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
