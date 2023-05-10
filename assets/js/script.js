@@ -96,29 +96,35 @@ const questions=[
 const questionEl = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
-const playButton = document.getElementById("play-button");
+const startButton = document.getElementById("start-button");
 const highScoresButton = document.getElementById("high-scores")
 
+var timerEl = document.querySelector(".timer-display")
 let currentQuestionIndex = 0;
 let score = 0;
 var timer;
 var timerCount;
-//var timerEl = document.querySelector(.timer-display)
 
 //need the timer to be in here
 
 //Need to write function for Play Button to start game
 
 //Function to start quiz
+
 function startQuiz(){
+    timerCount = 60;
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
     showQuestion();
+    startTimer();
 }
 
 function showQuestion(){
     resetState();
+    if (timerCount === 0) {
+        return;
+    }
     let currentQuestion = questions[currentQuestionIndex];
     let questionText = questions[currentQuestionIndex].question;
     //with Hiram's help I learned that below needed to be currentQuestionIndex, not currentQuestion. 
@@ -138,6 +144,20 @@ function showQuestion(){
         button.addEventListener("click", selectAnswer)
     })
 }
+
+startButton.addEventListener("click", startQuiz);
+
+function startTimer() {
+    timer = setInterval(function() {
+        timerCount--;
+        timerElement.textContent = timerCount;
+        if (timerCount === 0) {
+            clearInterval(timer);
+            endGame();
+        }
+    }, 1000);
+}
+
 function resetState(){
     nextButton.style.display = "none";
     while(answerButtons.firstChild){
@@ -161,6 +181,11 @@ function selectAnswer(e) {
         button.disabled = true;
     });
     nextButton.style.display = "block";
+}
+
+function setScores() {
+    highScoresButton.textContent = scoreStore;
+    localStorage.setItem("highScores", scoreStore);
 }
 
 function showScore(){
@@ -187,5 +212,3 @@ nextButton.addEventListener("click", ()=>{
         startQuiz();
     }
 })
-
-startQuiz();
