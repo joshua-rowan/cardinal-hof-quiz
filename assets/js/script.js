@@ -101,6 +101,11 @@ const highScoresButton = document.getElementById("high-scores")
 
 let currentQuestionIndex = 0;
 let score = 0;
+var timer;
+var timerCount;
+//var timerEl = document.querySelector(.timer-display)
+
+//need the timer to be in here
 
 //Need to write function for Play Button to start game
 
