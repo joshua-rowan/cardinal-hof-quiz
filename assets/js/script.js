@@ -186,6 +186,10 @@ function resetState(){
     }
 }
 
+function timerPenalty(){
+    timerCount -= 5
+}
+
 function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
@@ -194,7 +198,7 @@ function selectAnswer(e) {
         score++;
     } else {
         selectedBtn.classList.add("incorrect");
-        //timerCount-10;
+        timerPenalty();
     }
     Array.from(answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true"){
