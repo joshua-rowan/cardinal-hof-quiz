@@ -1,5 +1,5 @@
 const question = document.querySelector("#question");
-const choices = Array.from(document.querySelector(".choice-text"));
+const choices = Array.from(document.querySelectorAll(".choice-text"));
 const progressText = document.querySelector("#progressText");
 const scoreText = document.querySelector("#score");
 const progressBarFull = document.querySelector("#progressBarFull");
@@ -72,10 +72,10 @@ getNewQuestion = () => {
 
     questionCounter++
     //JQuery
-    progressText.innerText = "Question ${questionCounter} of ${MAX_QUESTIONS}"
-    progressBarFull.style.width = "${(questionCounter/MAX_QUESTIONS) * 100}%"
+    progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
+    progressBarFull.style.width = '${(questionCounter/MAX_QUESTIONS) * 100}%'
     //endJQuery
-
+        //change this so that the questions go in order
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionsIndex];
     question.innerText = currentQuestion.question;
@@ -92,8 +92,7 @@ getNewQuestion = () => {
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        if(!acceptingAnswers) 
-        return;
+        if(!acceptingAnswers) return;
 
         acceptingAnswers = false
         const selectedChoice = e.target;
