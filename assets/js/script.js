@@ -19,12 +19,12 @@ const questions=[
     ]  
     },
 {
-    question: "What is the question?",
+    question: "3?",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "1st Base", correct: false},
+        {text: "2nd", correct: true},
+        {text: "4th", correct: false},
+        {text: "3rd", correct: false},
      ]  
     },
 {
@@ -94,24 +94,47 @@ const questions=[
 
 //The Buttons
 const questionEl = document.getElementById("question");
+const quizEl = document.getElementById("question-container");
+const endEl = document.getElementById("end-container");
+const thankYouEl = document.getElementById("thank-you");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const startButton = document.getElementById("start-button");
+const replayButton = document.getElementById("play-again")
 const highScoresButton = document.getElementById("high-scores")
 
-var timerEl = document.querySelector(".timer-display")
+const timerEl = document.querySelector(".timer-display")
 let currentQuestionIndex = 0;
 let score = 0;
-var timer;
-var timerCount;
+let timer;
+let timerCount;
+let highscore = localStorage.getItem("highscore");
 
-//need the timer to be in here
+if(highscore !==null){
+    if (score > highscore) {
+        localStorage.setItem("highscore", score);
+    }
+}
+else{
+    localStorage.setItem("highscore", score);
+}
 
 //Need to write function for Play Button to start game
+startButton.addEventListener("click", startQuiz);
 
+function endQuiz() {
+    resetState();
+    clearInterval(timer)
+    quizEl.classList.add("hidden")
+    endEl.classList.remove("hidden")
+    thankYouEl.textContent = "Thank you for playing! You scored " + score + " out of 10."
+    setScores()
+}
 //Function to start quiz
 
 function startQuiz(){
+    document.getElementById("home").classList.add("hidden")
+    document.getElementById("question-container").classList.remove("hidden")
     timerCount = 60;
     currentQuestionIndex = 0;
     score = 0;
@@ -122,7 +145,7 @@ function startQuiz(){
 
 function showQuestion(){
     resetState();
-    if (timerCount === 0) {
+    if (timerCount <= 0) {
         return;
     }
     let currentQuestion = questions[currentQuestionIndex];
@@ -145,15 +168,13 @@ function showQuestion(){
     })
 }
 
-startButton.addEventListener("click", startQuiz);
-
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
         timerEl.textContent = timerCount;
-        if (timerCount === 0) {
+        if (timerCount <= 0) {
             clearInterval(timer);
-            endGame();
+            endQuiz();
         }
     }, 1000);
 }
@@ -172,7 +193,8 @@ function selectAnswer(e) {
         selectedBtn.classList.add("correct");
         score++;
     } else {
-        selectedBtn.classList.add("incorrect")
+        selectedBtn.classList.add("incorrect");
+        //timerCount-10;
     }
     Array.from(answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true"){
@@ -184,16 +206,8 @@ function selectAnswer(e) {
 }
 
 function setScores() {
-    highScoresButton.textContent = scoreStore;
-    localStorage.setItem("highScores", scoreStore);
-}
-
-function showScore(){
-    resetState();
-    questionEl.innerHTML = 'You scored ${score} out of ${questions.length}';
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-
+    highScoresButton.textContent = score;
+    localStorage.setItem("highScores", score);
 }
 
 function handleNextButton() {
@@ -201,7 +215,7 @@ function handleNextButton() {
     if(currentQuestionIndex < questions.length){
         showQuestion();
     } else {
-        showScore();
+        endQuiz();
     }
 }
 
@@ -212,3 +226,5 @@ nextButton.addEventListener("click", ()=>{
         startQuiz();
     }
 })
+
+replayButton.addEventListener("click", startQuiz);
