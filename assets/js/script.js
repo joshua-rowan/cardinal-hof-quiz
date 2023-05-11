@@ -1,215 +1,119 @@
-//the questions
-const questions=[
+const question = document.querySelector("#question");
+const choices = Array.from(document.querySelector(".choice-text"));
+const progressText = document.querySelector("#progressText");
+const scoreText = document.querySelector("#score");
+const progressBarFull = document.querySelector("#progressBarFull");
+
+let currentQuestion = {};
+let acceptingAnswers = true;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions = [];
+
+let questions = [
     {
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-     question: "What is the q",
-     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-    ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},            
-        {text: "This is the answer", correct: false},
-     ] 
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
+        question: "What is the answer?",
+        choice1: "This is the answer",
+        choice2: "This is the answer",
+        choice3: "This is the answer",
+        choice4: "This is the answer",
+        answer: 3,
     },
     {
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
+        question: "What is the 2answer?",
+        choice1: "This is the answer",
+        choice2: "This is the answer",
+        choice3: "This is the answer",
+        choice4: "This is the answer",
+        answer: 3,
+    },
+    {
+        question: "What is the 3answer?",
+        choice1: "This is the answer",
+        choice2: "This is the answer",
+        choice3: "This is the answer",
+        choice4: "This is the answer",
+        answer: 3,
+    },
+    {
+        question: "What is the 4answer?",
+        choice1: "This is the answer",
+        choice2: "This is the answer",
+        choice3: "This is the answer",
+        choice4: "This is the answer",
+        answer: 3,
+    },
+    {
+        question: "What is the 5answer?",
+        choice1: "This is the answer",
+        choice2: "This is the answer",
+        choice3: "This is the answer",
+        choice4: "This is the answer",
+        answer: 3,
     },
 ];
 
-//The Buttons
-const questionEl = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
-const startButton = document.getElementById("start-button");
-const highScoresButton = document.getElementById("high-scores");
-var quizCard = document.getElementById("quiz-card");
+const SCORE_POINTS = 100;
+const MAX_QUESTIONS = 5;
 
-var timerEl = document.querySelector(".timer-display")
-let currentQuestionIndex = 0;
-let score = 0;
-var timer;
-var timerCount;
-
-//need the timer to be in here
-
-//Need to write function for Play Button to start game
-
-//Function to start quiz
-
-function startQuiz(){
-    timerCount = 10;
-    currentQuestionIndex = 0;
+startGame = () => {
+    questionCounter = 0;
     score = 0;
-    nextButton.innerHTML = "Next";
-    showQuestion();
-    startTimer();
+    availableQuestions = [...questions];
+    getNewQuestion();
 }
 
-function showQuestion(){
-    resetState();
-    if (timerCount === 0) {
-        return;
-    }
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionText = questions[currentQuestionIndex].question;
-    //with Hiram's help I learned that below needed to be currentQuestionIndex, not currentQuestion. 
-    //And that questionText worked best for the question text display
-    //that the "/" before assets in my html js link was messing up the functionality
-    let questionNum = currentQuestionIndex + 1;
-    questionEl.innerHTML = questionNum + ". " + questionText;
+getNewQuestion = () => {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        localStorage.setItem("mostRecentScore", score)
 
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        answerButtons.appendChild(button);
-        if(answer.correct){
-            button.dataset.correct = answer.correct;
-        }
-        button.addEventListener("click", selectAnswer)
+        return window.location.assign('/end.html')
+    }
+
+    questionCounter++
+    //JQuery
+    progressText.innerText = "Question ${questionCounter} of ${MAX_QUESTIONS}"
+    progressBarFull.style.width = "${(questionCounter/MAX_QUESTIONS) * 100}%"
+    //endJQuery
+
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionsIndex];
+    question.innerText = currentQuestion.question;
+
+    choices.forEach(choice => {
+        const number = choice.dataset["number"];
+        choice.innerText = currentQuestion['choice' + number]
     })
+
+    availableQuestions.splice(questionsIndex, 1)
+
+    acceptingAnswers = true;
 }
 
-startButton.addEventListener("click", startQuiz);
+choices.forEach(choice => {
+    choice.addEventListener("click", e => {
+        if(!acceptingAnswers) 
+        return;
 
-function startTimer() {
-    timer = setInterval(function() {
-        timerCount--;
-        timerEl.textContent = timerCount;
-        if (timerCount === 0) {
-            clearInterval(timer);
-            endGame();
+        acceptingAnswers = false
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset["number"];
+
+        let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+        if(classToApply === "correct") {
+            incrementScore(SCORE_POINTS)
         }
-    }, 1000);
-}
 
-function resetState(){
-    nextButton.style.display = "none";
-    while(answerButtons.firstChild){
-        answerButtons.removeChild(answerButtons.firstChild);
-    }
-}
+        selectedChoice.parentElement.classList.add(classToApply);
 
-function selectAnswer(e) {
-    const selectedBtn = e.target;
-    const isCorrect = selectedBtn.dataset.correct === "true";
-    if(isCorrect) {
-        selectedBtn.classList.add("correct");
-        score++;
-    } else {
-        selectedBtn.classList.add("incorrect")
-    }
-    Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
-            button.classList.add("correct");
-        }
-        button.disabled = true;
-    });
-    nextButton.style.display = "block";
-}
-
-function setScores() {
-    highScoresButton.textContent = scoreStore;
-    localStorage.setItem("highScores", scoreStore);
-}
-
-function showScore(){
-    resetState();
-    questionEl.innerHTML = 'You scored ${score} out of ${questions.length}';
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-
-}
-
-function handleNextButton() {
-    currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length){
-        showQuestion();
-    } else {
-        showScore();
-    }
-}
-
-nextButton.addEventListener("click", ()=>{
-    if(currentQuestionIndex < questions.length){
-        handleNextButton();
-    }else{
-        startQuiz();
-    }
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion()
+        }, 1000)
+    })
 })
+
+incrementScore = num => {
+    score +=num;
+}
