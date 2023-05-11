@@ -1,9 +1,8 @@
 <!--1st html and css and js from James Q Quick Tutorial -->
 <!--Easy Tutorials helped as well-->
 <!--CodeNow helped-->
-<!--Works in Live Browser but not default. Solved w/ Hiram
-Questions don't display properly
-Score doesn't display propertly-->
+<!--TA Hiram helped me debug several issues-->
+<!--Much assistance in JS from tutor David Elutilo-->>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@ Score doesn't display propertly-->
             <a class="btn" id="start-button">Start</a>
             <a class="btn" href="/highscores.html" id="high-scores">High Scores</a>
         </div>
-        <div class="flex-center flex-column">
+        <div id ="question-container" class="flex-center flex-column hidden">
             <h2 id="question">Question goes here</h2>
             <div class="flex-center flex-column">
                 <h3 class="timer-display">Time Left = 60s</h3></div>
@@ -31,6 +30,11 @@ Score doesn't display propertly-->
                 <button class="btn">Answer 4</button>
             </div>
             <button id="next-btn">Next</button>
+        </div>
+        <div id="end-container" class="flex-center flex-column hidden">
+            <h2 id="thank-you"></h2>
+            <button id="play-again" class="btn">Play Again</button>
+            <a class="btn" href="/highscores.html" id="high-scores">High Scores</a>
         </div>
     </div>
     <script src="assets/js/script.js"></script>
