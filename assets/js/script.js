@@ -97,7 +97,8 @@ const questionEl = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const startButton = document.getElementById("start-button");
-const highScoresButton = document.getElementById("high-scores")
+const highScoresButton = document.getElementById("high-scores");
+var quizCard = document.getElementById("quiz-card");
 
 var timerEl = document.querySelector(".timer-display")
 let currentQuestionIndex = 0;
@@ -112,7 +113,7 @@ var timerCount;
 //Function to start quiz
 
 function startQuiz(){
-    timerCount = 60;
+    timerCount = 10;
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
@@ -150,7 +151,7 @@ startButton.addEventListener("click", startQuiz);
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
-        timerElement.textContent = timerCount;
+        timerEl.textContent = timerCount;
         if (timerCount === 0) {
             clearInterval(timer);
             endGame();

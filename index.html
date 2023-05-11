@@ -1,38 +1,26 @@
 <!--1st html and css and js from James Q Quick Tutorial -->
 <!--Easy Tutorials helped as well-->
 <!--CodeNow helped-->
+<!--Brian Design helped with html, css, and js-->
 <!--Works in Live Browser but not default. Solved w/ Hiram
 Questions don't display properly
 Score doesn't display propertly-->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardinals HoF Trivia Quiz</title>
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <title>Cardinals HoF Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <div class="container">
-        <div id="home" class="flex-center flex-column">
-            <h1 >The Greatest Cards</h1>
-            <a class="btn" id="start-button">Start</a>
-            <a class="btn" href="/highscores.html" id="high-scores">High Scores</a>
-        </div>
-        <div class="flex-center flex-column">
-            <h2 id="question">Question goes here</h2>
-            <div class="flex-center flex-column">
-                <h3 class="timer-display">Time Left = 60s</h3></div>
-            <div class="flex-center flex-column" id="answer-buttons">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-            </div>
-            <button id="next-btn">Next</button>
+        <div id="home" class="flex-column flex-center">
+            <h1>Cardinals Hall of Fame Fan Quiz</h1>
+            <a href="/quiz.html" class="btn">Start</a>
+            <a href="/highscores.html" class="btn" id="highscores-btn">High Scores</a>
         </div>
     </div>
-    <script src="assets/js/script.js"></script>
+    
 </body>
 </html>
