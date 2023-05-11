@@ -150,7 +150,7 @@ startButton.addEventListener("click", startQuiz);
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
-        timerElement.textContent = timerCount;
+        timerEl.textContent = timerCount;
         if (timerCount === 0) {
             clearInterval(timer);
             endGame();
