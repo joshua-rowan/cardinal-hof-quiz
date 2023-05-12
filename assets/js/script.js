@@ -30,10 +30,10 @@ const questions=[
 {
     question: "This shortstop is an 11-time Gold Glove winner and 14-time All-Star. He set records for the most assists and most double plays.",
     answers: [
-        {text: "Garry Templeton", correct: true},
+        {text: "Garry Templeton", correct: false},
         {text: "Marty Marion", correct: false,},
         {text: "Edgar Renteria", correct: false},            
-        {text: "Ozzie Smith", correct: false},
+        {text: "Ozzie Smith", correct: true},
      ] 
     },
 {
@@ -46,7 +46,7 @@ const questions=[
      ]  
     },
 {
-    question: "c?",
+    question: "Widely revered by the legends who came before him, this catcher holds the Cardinals record for the most games behind the plate. He is a Silver Slugger and a nine time Gold Glove Winner",
     answers: [
         {text: "Ted Simmons", correct: false},
         {text: "Yadier Molina", correct: true},
@@ -55,7 +55,7 @@ const questions=[
      ]  
     },
 {
-    question: "This legend totaled 3,023 hits, 1,610 runs, and 938 steals. He was elected to the Hall of Fame in his first year of elibibility.",
+    question: "This left-field legend totaled 3,023 hits, 1,610 runs, and 938 steals. He was elected to the Hall of Fame in his first year of elibibility.",
     answers: [
         {text: "Joe Medwick", correct: false},
         {text: "Lou Brock", correct: true},
@@ -64,12 +64,12 @@ const questions=[
      ]  
     },
 {
-    question: "cf?",
+    question: "He was part of two world series winning teams, was a 3-time All-Star and won 7 consecutive Gold Gloves. This center fielder was just great on the field, but off as well. His refusal to be traded essentially led to free-agency.",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Jim Edmonds", correct: false},
+        {text: "Willie McGee", correct: false},
+        {text: "Ray Lankford", correct: false},
+        {text: "Curt Flood", correct: true},
      ]  
     },
 {
@@ -82,12 +82,12 @@ const questions=[
      ]  
     },
     {
-    question: "ctchr?",
+    question: "A 10-time All-Star and four-time World Series winner. This legend retired with a .300 batting average, 2,383 hits, 1,304 RBI",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Harry Brecheen", correct: false},
+        {text: "Enos Slaughter", correct: true},
+        {text: "Johnny Mize", correct: false},
+        {text: "Bob Caruthers", correct: false},
      ]  
     },
 ];
