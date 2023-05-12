@@ -3,6 +3,7 @@
 ## Description
 
 This project is designed to quiz Cardinal Nation on their fandom. It should provide a a timed quiz on Cardinal legends that any user can interact with.
+- It should be noted that the high score display function is not currently working.
 
 ## Link
 https://joshua-rowan.github.io/cardinal-hof-quiz/
