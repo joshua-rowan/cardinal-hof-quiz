@@ -102,7 +102,10 @@ const nextButton = document.getElementById("next-btn");
 const startButton = document.getElementById("start-button");
 const replayButton = document.getElementById("play-again")
 const highScoresButton = document.getElementById("high-scores")
-const userInitials = document.getElementById("submit")
+const initialsButton = document.getElementById("submit")
+const userInitials = document.getElementById("initials");
+const displayHighScores = document.getElementById("high-scores-display");
+
 
 const timerEl = document.querySelector(".timer-display")
 let currentQuestionIndex = 0;
@@ -215,11 +218,6 @@ function setScores() {
     localStorage.setItem("highScores", score);
 }
 
-userInitials.addEventListener("click", (e) =>{
-    e.preventDefault();
-    setScores()
-})
-
 function handleNextButton() {
     currentQuestionIndex++;
     if(currentQuestionIndex < questions.length){
@@ -237,4 +235,29 @@ nextButton.addEventListener("click", ()=>{
     }
 })
 
-replayButton.addEventListener("click", startQuiz);
+function showHighScores() {
+    let initialsBank = initials.value.toUpperCase().trim()
+    let scoreBank = score;
+    let userScoreBank = JSON.parse(window.localStorage.getItem('highscores')) || [];
+    let scoreUpdate = {
+        userInitials: initialsBank,
+        score: scoreBank
+    }
+    userScoreBank.push((scoreUpdate))
+    localStorage.setItem("highscores", JSON.stringify(userScoreBank));
+    document.getElementById("end-container").classList.add("hidden");
+    document.getElementById("high-scores-box").classList.remove("hidden");
+
+}
+
+initialsButton.addEventListener("click", showHighScores);
+
+let getHighScores = JSON.parse(localStorage.getItem("highscores"));
+if (getHighScores != null) {
+    for (let i = 0; i < getHighScores.length; i++) {
+        const element = getHighScores[i];
+        let li = document.createElement("li")
+        li.textContent = '${element.initials} - scored ${element.score} points'
+        displayHighScores.appendChild(li)
+    }
+}
