@@ -104,7 +104,9 @@ const replayButton = document.getElementById("play-again")
 const highScoresButton = document.getElementById("high-scores")
 const initialsButton = document.getElementById("submit")
 const userInitials = document.getElementById("initials");
-const displayHighScores = document.getElementById("high-scores-display");
+var displayHighScores = document.getElementById("high-scores-display");
+const getHighScores = JSON.parse(localStorage.getItem("highscores"));
+const restartButton = document.getElementById("start-over")
 
 
 const timerEl = document.querySelector(".timer-display")
@@ -235,8 +237,22 @@ nextButton.addEventListener("click", ()=>{
     }
 })
 
+function displayTheHighScores() {
+    displayHighScores = document.createElement('li');
+    if (getHighScores != null) {
+        for (let i = 0; i < getHighScores.length; i++) {
+            const element = getHighScores[i];
+            let li = document.createElement("li")
+            li.textContent = 
+            displayHighScores.appendChild(li)
+            console.log(getHighScores);
+    }
+}}
+
 function showHighScores() {
-    let initialsBank = initials.value.toUpperCase().trim()
+    document.getElementById("end-container").classList.add("hidden");
+    document.getElementById("high-scores-box").classList.remove("hidden");
+    let initialsBank = initials.value.toUpperCase().trim();
     let scoreBank = score;
     let userScoreBank = JSON.parse(window.localStorage.getItem('highscores')) || [];
     let scoreUpdate = {
@@ -245,19 +261,17 @@ function showHighScores() {
     }
     userScoreBank.push((scoreUpdate))
     localStorage.setItem("highscores", JSON.stringify(userScoreBank));
-    document.getElementById("end-container").classList.add("hidden");
-    document.getElementById("high-scores-box").classList.remove("hidden");
-
+    displayTheHighScores();
 }
+
 
 initialsButton.addEventListener("click", showHighScores);
 
-let getHighScores = JSON.parse(localStorage.getItem("highscores"));
-if (getHighScores != null) {
-    for (let i = 0; i < getHighScores.length; i++) {
-        const element = getHighScores[i];
-        let li = document.createElement("li")
-        li.textContent = '${element.initials} - scored ${element.score} points'
-        displayHighScores.appendChild(li)
-    }
+function displayHome () {
+    document.getElementById("high-scores-box").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
 }
+
+restartButton.addEventListener("click", displayHome)
+
+
