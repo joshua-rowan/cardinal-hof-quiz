@@ -8,9 +8,8 @@ This project is designed to quiz Cardinal Nation on their fandom. It should prov
 https://joshua-rowan.github.io/cardinal-hof-quiz/
 
 ## Screenshot
-To Do
 
-## Scenario
+## Scenario![Cardinal Legends Quiz](https://github.com/joshua-rowan/cardinal-hof-quiz/assets/127271690/0a5401e3-68b3-4f4f-9b2c-c433f6636b86)
 
 I
 WANT to take a timed quiz on Cardinals Baseball Legends that stores high scores
