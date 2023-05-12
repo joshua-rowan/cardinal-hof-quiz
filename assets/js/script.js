@@ -1,43 +1,52 @@
 //the questions
 const questions=[
     {
-    question: "What is the question?",
+    question: "This Cardinal Legend won 7 out 9 World Series games with an ERA of 1.92.",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Dizzy Dean", correct: false},
+        {text: "Bob Gibson", correct: true},
+        {text: "Chris Carpenter", correct: false},
+        {text: "Steve Carlton", correct: false},
      ]  
     },
 {
-     question: "What is the q",
+     question: "This 1st baseman is a three-time NL MVP and finished his career 5th on the all-time home run list",
      answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Mark McGwire", correct: false},
+        {text: "Jim Bottomley", correct: false},
+        {text: "Stan Musial", correct: false},
+        {text: "Albert Pujols", correct: true},
     ]  
+    },
+{
+    question: "This 2nd baseman won seven National League batting titles and batted for .400 three times.",
+    answers: [
+        {text: "Red Schoendienst", correct: false},
+        {text: "Tommy Herr", correct: false},
+        {text: "Frankie Frisch", correct: false},
+        {text: "Rogers Hornsby", correct: true},
+     ]  
+    },
+{
+    question: "ss?",
+    answers: [
+        {text: "Ozzie Smith", correct: true},
+        {text: "Marty Marion", correct: false,
+        {text: "Edgar Renteria", correct: false},            
+        {text: "Garry Templeton", correct: false},
+     ] 
     },
 {
     question: "3?",
     answers: [
-        {text: "1st Base", correct: false},
-        {text: "2nd", correct: true},
-        {text: "4th", correct: false},
-        {text: "3rd", correct: false},
+        {text: "This is the answer", correct: false},
+        {text: "This is the answer", correct: true},
+        {text: "This is the answer", correct: false},
+        {text: "This is the answer", correct: false},
      ]  
     },
 {
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},            
-        {text: "This is the answer", correct: false},
-     ] 
-    },
-{
-    question: "What is the question?",
+    question: "c?",
     answers: [
         {text: "This is the answer", correct: false},
         {text: "This is the answer", correct: true},
@@ -46,7 +55,16 @@ const questions=[
      ]  
     },
 {
-    question: "What is the question?",
+    question: "This legend totaled 3,023 hits, 1,610 runs, and 938 steals. He was elected to the Hall of Fame in his first year of elibibility.",
+    answers: [
+        {text: "Joe Medwick", correct: false},
+        {text: "Lou Brock", correct: true},
+        {text: "Matt Holliday", correct: false},
+        {text: "Vince Coleman", correct: false},
+     ]  
+    },
+{
+    question: "cf?",
     answers: [
         {text: "This is the answer", correct: false},
         {text: "This is the answer", correct: true},
@@ -55,34 +73,16 @@ const questions=[
      ]  
     },
 {
-    question: "What is the question?",
+    question: "He won his first of  MVPs starting in right field. He retired with 55 major league records, and never struck out more than 46 times in a season.",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
-     ]  
-    },
-{
-    question: "What is the question?",
-    answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Stan Musial", correct: true},
+        {text: "Curt Flood", correct: false},
+        {text: "Bob Caruthers", correct: false},
+        {text: "Bobby Bonds", correct: false},
      ]  
     },
     {
-    question: "What is the question?",
+    question: "ctchr?",
     answers: [
         {text: "This is the answer", correct: false},
         {text: "This is the answer", correct: true},
@@ -102,6 +102,7 @@ const nextButton = document.getElementById("next-btn");
 const startButton = document.getElementById("start-button");
 const replayButton = document.getElementById("play-again")
 const highScoresButton = document.getElementById("high-scores")
+const userInitials = document.getElementById("submit")
 
 const timerEl = document.querySelector(".timer-display")
 let currentQuestionIndex = 0;
@@ -122,14 +123,6 @@ else{
 //Need to write function for Play Button to start game
 startButton.addEventListener("click", startQuiz);
 
-function endQuiz() {
-    resetState();
-    clearInterval(timer)
-    quizEl.classList.add("hidden")
-    endEl.classList.remove("hidden")
-    thankYouEl.textContent = "Thank you for playing! You scored " + score + " out of 10."
-    setScores()
-}
 //Function to start quiz
 
 function startQuiz(){
@@ -209,10 +202,23 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 }
 
+function endQuiz() {
+    resetState();
+    clearInterval(timer)
+    quizEl.classList.add("hidden")
+    endEl.classList.remove("hidden")
+    thankYouEl.textContent = "Thank you for playing! You scored " + score + " out of 10."
+}
+
 function setScores() {
     highScoresButton.textContent = score;
     localStorage.setItem("highScores", score);
 }
+
+userInitials.addEventListener("click", (e) =>{
+    e.preventDefault();
+    setScores()
+})
 
 function handleNextButton() {
     currentQuestionIndex++;
