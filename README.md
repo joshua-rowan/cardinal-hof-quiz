@@ -32,7 +32,11 @@ The code in this repo should accomplish the following:
 N/A
 
 # Credits
-N/A
+James Q Quick on YouTube helped me develop starter html, css, and js code and concepts.
+Easy Tutorials helped as well
+Received guidance from TA Hiram during Office Hours several times
+Much assistance with the JS came from my tutor David Elutilo
+https://github.com/RafDiMartino helped me write to local storage
 
 # License
 Please refer to the LICNESE in the repo.
