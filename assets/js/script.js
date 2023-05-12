@@ -14,7 +14,7 @@ const questions=[
      answers: [
         {text: "Mark McGwire", correct: false},
         {text: "Jim Bottomley", correct: false},
-        {text: "Stan Musial", correct: false},
+        {text: "Paul Goldschmidt", correct: false},
         {text: "Albert Pujols", correct: true},
     ]  
     },
@@ -28,30 +28,30 @@ const questions=[
      ]  
     },
 {
-    question: "ss?",
+    question: "This shortstop is an 11-time Gold Glove winner and 14-time All-Star. He set records for the most assists and most double plays.",
     answers: [
-        {text: "Ozzie Smith", correct: true},
-        {text: "Marty Marion", correct: false,
+        {text: "Garry Templeton", correct: true},
+        {text: "Marty Marion", correct: false,},
         {text: "Edgar Renteria", correct: false},            
-        {text: "Garry Templeton", correct: false},
+        {text: "Ozzie Smith", correct: false},
      ] 
     },
 {
-    question: "3?",
+    question: "Born in Liberty, MO and known as 'The Captain' this 3rd baseman was a 5-time Gold-Glove Winner and MVP",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Scott Rolen", correct: false},
+        {text: "Nolen Arenado", correct: false},
+        {text: "Ken Boyer", correct: true},
+        {text: "Whitey Kurowski", correct: false},
      ]  
     },
 {
     question: "c?",
     answers: [
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: true},
-        {text: "This is the answer", correct: false},
-        {text: "This is the answer", correct: false},
+        {text: "Ted Simmons", correct: false},
+        {text: "Yadier Molina", correct: true},
+        {text: "Tim McCarver", correct: false},
+        {text: "Mike Matheny", correct: false},
      ]  
     },
 {
